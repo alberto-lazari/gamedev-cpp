@@ -57,7 +57,7 @@ double max(double a, double b) {
 /**
  * Returns true iff `p` is within range [`a`, `b`]
  * Ex:
- * p in in range:
+ * p is in range:
  *   a    p      b
  *   *----*------*
  *   a          p b
@@ -92,7 +92,7 @@ bool isInside(
  *   +-----*
  *        end
  *
- * Mind that `b` `origin` and `end` could be swapped:
+ * Mind that `origin` and `end` could be swapped:
  *
  * end
  *   *-----+
@@ -107,7 +107,7 @@ bool is_inside(const box& b, const point& p) {
 }
 
 /**
- * Read a point from x, y coordinates from stdin
+ * Read a point from stdin, reading an (x, y) pair of coordinates.
  */
 point read_point() {
   double x;
@@ -117,33 +117,54 @@ point read_point() {
   return point(x, y);
 }
 
+/**
+ * Read a box from stdin, reading a pair of points.
+ */
 box read_box() {
   return box(read_point(), read_point());
 }
 
+/**
+ * Return true iff `a` and `b` are the same coordinate when displaying them.
+ */
 bool is_same_pixel(double a, double b) {
   return (int) a == (int) b;
 }
 
+/**
+ * Display the box `b` and point `p` in a 2D image on stdout.
+ */
 void pretty_print(const box& b, const point& p) {
+  // Image boundaries, for initial and final values of rows and columns in iterations
   const double min_x = min(min(b.origin.x, b.end.x), p.x);
   const double max_x = max(max(b.origin.x, b.end.x), p.x);
   const double min_y = min(min(b.origin.y, b.end.y), p.y);
   const double max_y = max(max(b.origin.y, b.end.y), p.y);
 
+  // Iterate on rows from top to bottom, following terminal order
   for (double row = max_y; row >= min_y; --row) {
     for (double col = min_x; col <= max_x; ++col) {
+      // Whether `p` is the current pixel
+      const bool is_point = is_same_pixel(col, p.x) && is_same_pixel(row, p.y);
+
+      // Whether the current pixel is a vertical/horizontal edge of `b`
       const bool is_vedge = is_in_range(b.origin.y, b.end.y, row)
         && ( is_same_pixel(col, b.origin.x) || is_same_pixel(col, b.end.x) );
       const bool is_hedge = is_in_range(b.origin.x, b.end.x, col)
         && ( is_same_pixel(row, b.origin.y) || is_same_pixel(row, b.end.y) );
-      const bool is_point = is_same_pixel(col, p.x) && is_same_pixel(row, p.y);
+
+      // The character to display on the current pixel
       const char pixel = is_point ? '*'
-        : is_vedge ? (is_hedge ? '+' : '|')
+        // Display vertices with '+'
+        : is_vedge && is_hedge ? '+'
+        : is_vedge ? '|'
         : is_hedge ? '-'
         : ' ';
+
+      // Print the current pixel
       std::cout << pixel;
     }
+    // End of the current row
     std::cout << std::endl;
   }
 }
