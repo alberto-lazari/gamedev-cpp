@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+compile="$(dirname "$BASH_SOURCE")/compile"
+
+file="$1"
+[[ -n "$file" ]] || exit 1
+
+exe="$("$compile" "$file" -g)"
+lldb \
+  -O "target create $exe" \
+  -O 'process launch --stop-at-entry'

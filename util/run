@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+file="$1"
+[[ -n "$file" ]] || exit 1
+shift
+
+exe="$("$(dirname "$BASH_SOURCE")/compile" "$file")"
+"./$exe" "$@"
