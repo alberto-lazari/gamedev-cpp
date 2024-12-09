@@ -1,12 +1,20 @@
 #!/bin/bash
 set -e
 
+# Perform debug build
+export DEBUG=true
+
+# Delegate compilation to dedicated script
 compile="$(dirname "$BASH_SOURCE")/compile"
 
 file="$1"
 [[ -n "$file" ]] || exit 1
 
-exe="$("$compile" "$file" -g)"
+# Compile file and obtain the actual compiled binary path
+# Will result in a debug build, having set DEBUG
+exe="$("$compile" "$file")"
+
+# Start LLDB shell with process already started
 lldb \
   -O "target create $exe" \
   -O 'process launch --stop-at-entry'

@@ -1,9 +1,17 @@
 #!/bin/bash
 set -e
 
+# Delegate compilation to dedicated script
+compile="$(dirname "$BASH_SOURCE")/compile"
+
 file="$1"
 [[ -n "$file" ]] || exit 1
+
+# Remove file argument to allow passing the remaining ones to executable
 shift
 
-exe="$("$(dirname "$BASH_SOURCE")/compile" "$file")"
-"./$exe" "$@"
+# Compile file and obtain the actual compiled binary path
+exe="$("$compile" "$file")"
+
+# Run compiled binary passing arguments
+"$exe" "$@"
