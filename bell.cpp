@@ -14,34 +14,32 @@ unsigned bell_jagged(unsigned n) {
     return 1;
   }
   unsigned* previous = new unsigned[1] { 1 };
-  // print(previous, 1);
+  unsigned* current;
 
   // Original algorithm
-  for (unsigned row = 1; row < n; ++row) {
-    unsigned* current = new unsigned[row + 1];
+  for (unsigned row = 1; row < n; ++row, previous = current) {
+    current = new unsigned[row + 1];
     current[0] = previous[row - 1];
-    for (unsigned col = 1; col < row + 1; ++col) {
-      current[col] = current[col - 1] + previous[col - 1];
+    for (unsigned col = 0; col < row; ++col) {
+      current[col + 1] = current[col] + previous[col];
     }
     delete[] previous;
-    previous = current;
-    // print(current, row + 1);
   }
-  const unsigned B_n = previous[n - 1];
-  delete[] previous;
+  const unsigned B_n = current[n - 1];
+  delete[] current;
   return B_n;
 }
 
 /**
  * Index of B_n in the flat representation of the triangle
- * 1. (1)
- * 2. (1) (2)
- * 3. (2)  3 (5)
- * 4. (5)  7  10 (15)
- * 5. (15) 20 27  37 (52)
+ * 1  (1)
+ * 2  (1) (2)
+ * 3  (2)  3 (5)
+ * 4  (5)  7  10 (15)
+ * 5  (15) 20 27  37 (52)
  * ...
  *
- *     1.  2.      3.          4.              5.
+ *     1   2       3           4               5
  *    [0] [1] +1  [2] +1  +2  [3] +1  +2  +3  [4]
  * => (1) (2)  3  (5)  7   10 (15) 20  27  37 (52) ...
  *
@@ -72,14 +70,11 @@ unsigned bell_flat(unsigned n) {
 
   unsigned* previous = flat_t;
   unsigned* current = flat_t + 1;
-  // Decrement previous, because the flattening removes duplicates between iterations
-  for (unsigned i = 2; i < n; ++i, --previous) {
-    for (
-        unsigned* const end = current + i;
-        current < end;
-        ++previous, ++current
-    ) {
-      current[1] = *previous + *current;
+  for (unsigned i = 2; i < n;
+       current = i++ + (previous = current)
+  ) {
+    for (unsigned col = 0; col < i; ++col) {
+      current[col + 1] = previous[col] + current[col];
     }
   }
 
