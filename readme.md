@@ -1,4 +1,4 @@
-# My C++ repo
+# My C++ Repo
 
 Exercises for the C++ introduction course.
 
