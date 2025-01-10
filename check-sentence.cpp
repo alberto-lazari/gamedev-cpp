@@ -19,58 +19,64 @@ bool is_period(char c) {
   }
 }
 
-void* init(char);
-void* upper(char);
-void* lower(char);
-void* space(char);
-void* comma(char);
-void* period(char);
-void* period_space(char);
-void* error(char);
+struct state {
+  state* (* const transition)(char);
+};
 
-void* error(char input) {
-  return (void*) (error);
+// Transitions
+state* t_error(char);
+state* t_init(char);
+state* t_upper(char);
+state* t_lower(char);
+state* t_space(char);
+state* t_comma(char);
+state* t_period(char);
+
+state* error = new state { t_error };
+state* init = new state { t_init };
+state* upper = new state { t_upper };
+state* lower = new state { t_lower };
+state* space = new state { t_space };
+state* comma = new state { t_comma };
+state* period = new state { t_period };
+
+state* t_error(char input) {
+  return error;
 }
 
-void* init(char input) {
-  return (void*) (is_upper(input) ? upper : error);
+state* t_init(char input) {
+  return is_upper(input) ? upper : error;
 }
 
-void* upper(char input) {
-  return (void*) (
-      is_upper(input) ? upper
-      : is_lower(input) ? lower
-      : input == ' ' ? space
-      : input == ',' ? comma
-      : is_period(input) ? period
-      : error
-  );
+state* t_upper(char input) {
+  return is_upper(input) ? upper
+    : is_lower(input) ? lower
+    : input == ' ' ? space
+    : input == ',' ? comma
+    : is_period(input) ? period
+    : error;
 }
 
-void* lower(char input) {
-  return (void*) (
-      is_lower(input) ? lower
-      : input == ' ' ? space
-      : input == ',' ? comma
-      : is_period(input) ? period
-      : error
-  );
+state* t_lower(char input) {
+  return is_lower(input) ? lower
+    : input == ' ' ? space
+    : input == ',' ? comma
+    : is_period(input) ? period
+    : error;
 }
 
-void* space(char input) {
-  return (void*) (
-      is_upper(input) ? upper
-      : is_lower(input) ? lower
-      : error
-  );
+state* t_space(char input) {
+  return is_upper(input) ? upper
+    : is_lower(input) ? lower
+    : error;
 }
 
-void* comma(char input) {
-  return (void*) (input == ' ' ? space : error);
+state* t_comma(char input) {
+  return input == ' ' ? space : error;
 }
 
-void* period(char input) {
-  return (void*) (input == ' ' ? init : error);
+state* t_period(char input) {
+  return input == ' ' ? init : error;
 }
 
 
@@ -78,13 +84,12 @@ bool is_sentence_valid(const char* sentence) {
   if (*sentence == '\0') {
     return true;
   }
-  void* state = (void*) init;
+  state* s = init;
   for (const char* c = sentence; *c != '\0'; ++c) {
-    void* (*step)(char) = (void* (*)(char)) state;
     char input = *c;
-    state = step(input);
+    s = s->transition(input);
   }
-  return state == period;
+  return s == period;
 }
 
 int main(int argc, const char* argv[]) {
