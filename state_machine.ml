@@ -1,14 +1,15 @@
-(*
-  This requires the '-rectypes' OCaml flag.
-  It allows for modeling states as pure functions to other states.
-*)
-type state = char -> state
-
 let in_range (lower, upper) c =
   let code = Char.code c in
   code >= Char.code lower && code <= Char.code upper
 
 
+(*
+  State transitions (which coincide with states themselves) are functions of a recursive type
+  state = char -> state
+
+  This requires the '-rectypes' OCaml flag.
+  It allows for modeling states as pure functions to other states.
+*)
 let rec init input = match input with
 | _ when in_range ('A', 'Z') input -> upper
 | _ -> error
