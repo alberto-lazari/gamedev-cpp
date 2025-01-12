@@ -94,7 +94,7 @@ bool is_sentence_valid(const char* sentence) {
 
 int main(int argc, const char* argv[]) {
   if (argc < 2) {
-    return 1;
+    return 0;
   }
   return is_sentence_valid(argv[1]) ? 0 : 1;
 }
