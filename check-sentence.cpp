@@ -1,5 +1,3 @@
-#include <iostream>
-
 bool is_upper(char c) {
   return c >= 'A' && c <= 'Z';
 }
@@ -19,6 +17,10 @@ bool is_period(char c) {
   }
 }
 
+// Wrap state transitions (the states themselves in a purely functional manner) as pointers,
+// in order to allow indirect recursive typing.
+// See OCaml implementation in `state_machine.ml` for a purely functional implementation,
+// i.e. states are fully represented by fuctions.
 struct state {
   state* (* const transition)(char);
 };
@@ -32,6 +34,7 @@ state* t_space(char);
 state* t_comma(char);
 state* t_period(char);
 
+// States
 state* error = new state { t_error };
 state* init = new state { t_init };
 state* upper = new state { t_upper };
@@ -80,21 +83,22 @@ state* t_period(char input) {
 }
 
 
-bool is_sentence_valid(const char* sentence) {
+bool check(const char* sentence) {
   if (*sentence == '\0') {
     return true;
   }
   state* s = init;
   for (const char* c = sentence; *c != '\0'; ++c) {
-    char input = *c;
+    const char input = *c;
+    // Perform transition and update the current state
     s = s->transition(input);
   }
+  // Sentence is correct if it ends with a period
   return s == period;
 }
 
 int main(int argc, const char* argv[]) {
-  if (argc < 2) {
-    return 0;
+  if (argc > 1) {
+    return check(argv[1]) ? 0 : 1;
   }
-  return is_sentence_valid(argv[1]) ? 0 : 1;
 }
