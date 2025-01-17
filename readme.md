@@ -16,6 +16,7 @@ Exercises for the C++ introduction course.
   [`namespaces`](namespaces.cpp),
   [`check-sentence-automata`](check-sentence.cpp)
 - Lecture 6: classes (OOP)
+- Lecture 7: [`hierarchy`](hierarchy.cpp), [`virtual`](virtual.cpp)
 
 
 ## Usage
