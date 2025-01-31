@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\MGD">
+      <UniqueIdentifier>{477b5a24-0a9a-4ea1-a7b1-375d13fa14ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MGD">
+      <UniqueIdentifier>{b8d9ff2c-e781-4994-92f6-8bf7b08e2c69}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Core\MGDMovableTexture.cpp">
+      <Filter>Header Files\MGD</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\MGDTexture.cpp">
+      <Filter>Header Files\MGD</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\MGDTimer.cpp">
+      <Filter>Header Files\MGD</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Core\MGDGlobals.h">
+      <Filter>Header Files\MGD</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\MGDMain.hpp">
+      <Filter>Header Files\MGD</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\MGDMovableTexture.h">
+      <Filter>Header Files\MGD</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\MGDTexture.h">
+      <Filter>Header Files\MGD</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\MGDTimer.h">
+      <Filter>Header Files\MGD</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\MGDTransform.h">
+      <Filter>Header Files\MGD</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
