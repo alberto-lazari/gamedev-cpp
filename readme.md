@@ -26,5 +26,5 @@ The [util/](util) directory contains wrappers to compile, run, and debug individ
 For example the following compiles and runs the `test.cpp` file, passing `arg` and `val` as arguments:
 
 ```sh
-util/run test.cpp arg val
+util/run test.cpp [arg1 arg2 ...]
 ```
