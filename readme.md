@@ -17,6 +17,7 @@ Exercises for the C++ introduction course.
   [`check-sentence-automata`](check-sentence.cpp)
 - Lecture 6: classes (OOP)
 - Lecture 7: [`hierarchy`](hierarchy.cpp), [`virtual`](virtual.cpp), [`class-function-pointers`](class-function-pointers.cpp)
+- Lecture 8: [`templates`](templates.cpp), [`smart-pointers`](smart-ptr.cpp)
 
 
 ## Usage
