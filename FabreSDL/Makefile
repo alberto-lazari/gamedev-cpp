@@ -13,7 +13,7 @@ DYLD_LIBRARY_PATH := $(SDL)/lib/$(shell uname -m)
 
 # Source Files
 SRC := Source/Core/*.cpp \
-			 Source/Main.cpp
+       Source/Main.cpp
 
 # Compiler Flags
 CXXFLAGS := -std=c++11 \
