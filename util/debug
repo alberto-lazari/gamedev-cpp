@@ -5,7 +5,7 @@ set -e
 export DEBUG=true
 
 # Delegate compilation to dedicated script
-compile="$(dirname "$BASH_SOURCE")/compile"
+compile="$(dirname "$(realpath "${BASH_SOURCE[0]}")")/compile"
 
 file="$1"
 [[ -n "$file" ]] || exit 1

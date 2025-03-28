@@ -5,20 +5,25 @@ Exercises for the C++ introduction course.
 
 ## Lectures
 
-- Lecture 1: [`true`](true.cpp), [`test`](test.cpp), compiler, syntax, variables, const
-- Lecture 2: [`inside`](inside.cpp), bool, operators, functions
-- Lecture 3: preprocessor, pointers
-- Lecture 4: [`pointers`](pointers.cpp), function pointers, arrays, [`libstring.h`](libstring.h), [`bell`](bell.cpp)
-- Lecture 5: [`enum`](enum.cpp),
-  [`struct`](struct.cpp),
-  [`auto`](auto.cpp),
-  const,
-  [`namespaces`](namespaces.cpp),
-  [`check-sentence-automata`](check-sentence.cpp)
-- Lecture 6: classes (OOP)
-- Lecture 7: [`hierarchy`](hierarchy.cpp), [`virtual`](virtual.cpp), [`class-function-pointers`](class-function-pointers.cpp)
-- Lecture 8: [`templates`](templates.cpp), [`smart-pointers`](smart-ptr.cpp)
+### Base Course
 
+1. [`true`](base/true.cpp), [`test`](base/test.cpp), compiler, syntax, variables, const
+2. [`inside`](base/inside.cpp), bool, operators, functions
+3. preprocessor, pointers
+4. [`pointers`](base/pointers.cpp), function pointers, arrays, [`libstring.h`](base/libstring.h), [`bell`](base/bell.cpp)
+5. [`enum`](base/enum.cpp),
+  [`struct`](base/struct.cpp),
+  [`auto`](base/auto.cpp),
+  const,
+  [`namespaces`](base/namespaces.cpp),
+  [`check-sentence-automata`](base/check-sentence.cpp)
+6. classes (OOP)
+7. [`hierarchy`](base/hierarchy.cpp), [`virtual`](base/virtual.cpp), [`class-function-pointers`](base/class-function-pointers.cpp)
+8. [`templates`](base/templates.cpp), [`smart-pointers`](base/smart-ptr.cpp)
+
+### Advanced Course
+
+1. Allocation
 
 ## Usage
 
