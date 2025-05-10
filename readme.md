@@ -24,12 +24,15 @@ Exercises for the C++ introduction course.
 ### Advanced Course
 
 1. Allocation
+2. `new` operator vs `operator new`, custom allocation strategies, in-place allocation
+3. [`sizeof`](advanced/sizeof.cpp), [`alignment`](advanced/alignment.cpp)
 
 ## Usage
 
 The [util/](util) directory contains wrappers to compile, run, and debug individual `.cpp` files as scripts, on a Clang environment.
 
-For example the following compiles and runs the `test.cpp` file, passing `arg` and `val` as arguments:
+For example,
+the following compiles and runs the `test.cpp` file, passing `arg` and `val` as arguments:
 
 ```sh
 util/run test.cpp [arg1 arg2 ...]
