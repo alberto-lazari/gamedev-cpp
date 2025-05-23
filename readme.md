@@ -26,6 +26,7 @@ Exercises for the C++ introduction course.
 1. Allocation
 2. `new` operator vs `operator new`, custom allocation strategies, in-place allocation
 3. [`sizeof`](advanced/sizeof.cpp), [`alignment`](advanced/alignment.cpp)
+4. [`class-alignment`](advanced/class-alignment.cpp), fixed allocator
 
 ## Usage
 

@@ -1,7 +1,7 @@
 #include <iostream>
 
 // For offsetof()
-#include <stddef.h>
+#include <cstddef>
 
 struct S
 {
@@ -15,8 +15,8 @@ struct S
              // 1 byte padding
 };
 
-// Trailing padding is necessary to ensure every type is always consistent with its natural alignment.
-// If S is 11 bytes long then, at some point, int will not be aligned on a multiple of 4.
+// Trailing padding is necessary to ensure every type is consistent with its natural alignment.
+// If S is 11 bytes long, then - at some point - int will not be aligned on a multiple of 4.
 // This could happen on an array:
 //
 //  0       4       8   10  11      15 (not multiple of 4)
