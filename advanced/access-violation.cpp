@@ -3,8 +3,8 @@ const int x = 0;
 int main()
 {
     int* mut_x = const_cast<int*>(&x);
-    // Works but UB
-    ++mut_x;
+    // UB: Bus error: 10
+    // *mut_x = 1;
 
     int n {};
     // Runtime error (UB): pointer being freed was not allocated
